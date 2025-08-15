@@ -4,9 +4,16 @@ from venv import create
 from django.db import models
 
 # Create your models here.
+class AbstractModel(models.Model):
+    updated_date = models.DateTimeField(
+        auto_now=True, blank=True, verbose_name='Updated Date', null=True)
+    created_date = models.DateTimeField(
+        auto_now_add=True, blank=True, verbose_name='Created Date', null=True)
 
+    class Meta:
+        abstract = True
 
-class GeneralSetting(models.Model):
+class GeneralSetting(AbstractModel):
     name = models.CharField(
         max_length=100, default='SeçGEO', blank=True, verbose_name='Name', help_text="Enter the name of the site")
     description = models.TextField(

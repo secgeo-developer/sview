@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import GeneralSetting
+from scv.models import GeneralSetting
 
 @admin.register(GeneralSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
