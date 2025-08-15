@@ -23,7 +23,7 @@ class GeneralSetting(AbstractModel):
 
     def __str__(self):
         # return self.site_name
-        return f"{self.site_name}"
+        return f"{self.name}"
 
     class Meta:
         verbose_name = 'General Setting'
