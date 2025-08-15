@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>SeçGEO</title>{% endblock %}
+    {% block css_files %}{% endblock css_files %}
+
+    {% include "includes/base_head.html" %}
+</head>
+<body>
+		
+    {% include "includes/base_header_menu_area.html" %}
+
+    {% block content %}{% endblock content %}
+        
+    {% include "includes/base_footer_area.html" %}
+
+    
+</body>
+</html>
