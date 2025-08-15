@@ -1,6 +1,7 @@
 
+import site
 from django.shortcuts import render
-from scv.models import GeneralSetting, ImageSetting
+from scv.models import GeneralSetting, ImageSetting, SocialMedia
 # Create your views here.
 
 
@@ -37,7 +38,7 @@ def sview_context(request):
     # ImageSetting
     site_favicon = get_image_setting('site_favicon')
     home_banner_area_image = get_image_setting('home_banner_area_image')
- 
+    site_logo = get_image_setting('site_logo')
 
     # Skill
 
@@ -46,6 +47,7 @@ def sview_context(request):
     # Education
 
     # Social Media
+    social_media = SocialMedia.objects.all()
 
     # Document
 
@@ -62,6 +64,8 @@ def sview_context(request):
         'welcome_area_myself': welcome_area_myself,
         'site_favicon': site_favicon,
         'home_banner_area_image': home_banner_area_image,
+        'site_logo': site_logo,
+        'social_media': social_media,
     }
 
 

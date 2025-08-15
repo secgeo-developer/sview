@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from scv.models import GeneralSetting, ImageSetting
+from scv.models import GeneralSetting, ImageSetting, SocialMedia
 
 @admin.register(GeneralSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
@@ -19,4 +19,13 @@ class ImageSettingsAdmin(admin.ModelAdmin):
 
     class Meta:
         model = ImageSetting
+        fields = '__all__'
+
+@admin.register(SocialMedia)
+class SocialMediaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'link', 'icon')
+    search_fields = ('link', 'icon')
+
+    class Meta:
+        model = SocialMedia
         fields = '__all__'
