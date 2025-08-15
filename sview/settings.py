@@ -60,7 +60,9 @@ ROOT_URLCONF = 'sview.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',  # Add your templates directory here
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
