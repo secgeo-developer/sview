@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from scv.models import GeneralSetting, ImageSetting, SocialMedia, Education, Experience, Skill
+from scv.models import GeneralSetting, ImageSetting, SocialMedia, Education, Experience, Skill, Document
 
 @admin.register(GeneralSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
@@ -59,4 +59,14 @@ class SocialMediaAdmin(admin.ModelAdmin):
 
     class Meta:
         model = SocialMedia
+        fields = '__all__'
+
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'slug', 'button_text', 'file', 'order', 'created_date', 'updated_date')
+    search_fields = ('slug', 'button_text')
+
+    class Meta:
+        model = Document
         fields = '__all__'

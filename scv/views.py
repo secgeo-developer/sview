@@ -3,7 +3,7 @@ from email.mime import base
 from math import exp
 import site
 from django.shortcuts import render
-from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill
+from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document
 # Create your views here.
 
 
@@ -58,6 +58,7 @@ def sview_context(request):
     social_media = SocialMedia.objects.all()
 
     # Document
+    documents = Document.objects.all()
 
     return {
         'site_title': site_title,
@@ -80,6 +81,7 @@ def sview_context(request):
         'base_welcome_area_total_donation': base_welcome_area_total_donation,
         'base_welcome_area_total_projects': base_welcome_area_total_projects,
         'base_welcome_area_total_volunteers': base_welcome_area_total_volunteers,
+        'documents': documents,
     }
 
 

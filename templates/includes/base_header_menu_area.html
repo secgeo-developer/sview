@@ -32,6 +32,14 @@
 									</ul>
 								</li> 
 								<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download</a>
+									<ul class="dropdown-menu">
+										{% for document in documents %}
+											<li class="nav-item"><a class="nav-link" href="{{ document.file.url }}" target="_blank"><i class="fa fa-download" style="margin-right: 5px;"></i> {{ document.slug }}</a></li>
+										{% endfor %}
+									</ul>
+								</li> 
 							</ul>
 						</div> 
 					</div>

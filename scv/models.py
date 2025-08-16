@@ -115,3 +115,24 @@ class SocialMedia(AbstractModel):
         verbose_name = 'Social Media'
         verbose_name_plural = 'Social Media'
         ordering = ['order']
+
+class Document(AbstractModel):
+    order = models.IntegerField(default=0, blank=True,
+                                verbose_name='Order', help_text="Enter the order of the document")
+    slug = models.SlugField(default='', max_length=100, blank=True,
+                            verbose_name='Document Slug', help_text="Enter the slug for the document")
+    button_text = models.CharField(default='', max_length=254, blank=True,
+                                   verbose_name='Button Text', help_text="Enter the button text")
+    file = models.FileField(upload_to='documents/', blank=True,
+                            verbose_name='Document File', help_text="Upload the document file")
+
+    #file = models.FileField(storage=DocumentStorage(), blank=True,
+    #                       verbose_name='Document File', help_text="Upload the document file")
+
+    def __str__(self):
+        return f'Document: {self.slug}'
+
+    class Meta:
+        verbose_name = 'Document'
+        verbose_name_plural = 'Documents'
+        ordering = ['order']
