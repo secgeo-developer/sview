@@ -1,7 +1,5 @@
-from pyexpat import model
-from turtle import update
-from venv import create
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
@@ -51,6 +49,55 @@ class ImageSetting(AbstractModel):
         verbose_name = 'Image Setting'
         verbose_name_plural = 'Image Settings'
         ordering = ['name']
+
+class Skill(AbstractModel):
+    order = models.IntegerField(default=0, blank=True,
+                                verbose_name='Skill Order', help_text="This is variable of the setting")
+    name = models.CharField(default='', max_length=100, blank=True,
+                            verbose_name='Skill Name', help_text="This is variable of the setting")
+    percentage = models.IntegerField(default=50, blank=True,
+                                     verbose_name='Skill Percentage',
+                                     validators=[MinValueValidator(0), MaxValueValidator(100)])
+
+    class Meta:
+        verbose_name = 'Skill'
+        verbose_name_plural = 'Skills'
+        ordering = ['order']
+
+class Experience(AbstractModel):
+    company_name = models.CharField(
+        max_length=100, blank=True, verbose_name='Company Name', help_text="Enter the name of the company")
+    job_title = models.CharField(
+        max_length=100, blank=True, verbose_name='Job Title', help_text="Enter your job title")
+    position = models.CharField(
+        max_length=100, blank=True, verbose_name='Position', help_text="Enter your position")
+    start_date = models.DateField(blank=True, null=True, verbose_name='Start Date',
+                                  help_text="Enter the start date of your experience")
+    end_date = models.DateField(default=None, blank=True, null=True,
+                                verbose_name='End Date', help_text="Enter the end date of your experience")
+
+    class Meta:
+        verbose_name = 'Experience'
+        verbose_name_plural = 'Experiences'
+        ordering = ['-start_date']
+
+
+class Education(AbstractModel):
+    school_name = models.CharField(
+        max_length=100, blank=True, verbose_name='Institution Name', help_text="Enter the name of the institution")
+    department = models.CharField(
+        max_length=254, blank=True, verbose_name='Department', help_text="Enter your department")
+    position = models.CharField(
+        max_length=100, blank=True, verbose_name='Position', help_text="Enter your position")
+    start_date = models.DateField(blank=True, null=True, verbose_name='Start Date',
+                                  help_text="Enter the start date of your education")
+    end_date = models.DateField(default=None, blank=True, null=True,
+                                verbose_name='End Date', help_text="Enter the end date of your education")
+
+    class Meta:
+        verbose_name = 'Education'
+        verbose_name_plural = 'Educations'
+        ordering = ['-start_date']
 
 
 class SocialMedia(AbstractModel):

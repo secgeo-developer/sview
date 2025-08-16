@@ -1,7 +1,9 @@
 
+from email.mime import base
+from math import exp
 import site
 from django.shortcuts import render
-from scv.models import GeneralSetting, ImageSetting, SocialMedia
+from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill
 # Create your views here.
 
 
@@ -34,6 +36,9 @@ def sview_context(request):
     home_banner_area_email = get_general_setting('home_banner_area_email')
     home_banner_area_address = get_general_setting('home_banner_area_address')
     welcome_area_myself = get_general_setting('welcome_area_myself')
+    base_welcome_area_total_donation = get_general_setting('base_welcome_area_total_donation')
+    base_welcome_area_total_projects = get_general_setting('base_welcome_area_total_projects')
+    base_welcome_area_total_volunteers = get_general_setting('base_welcome_area_total_volunteers')
 
     # ImageSetting
     site_favicon = get_image_setting('site_favicon')
@@ -41,10 +46,13 @@ def sview_context(request):
     site_logo = get_image_setting('site_logo')
 
     # Skill
+    skills = Skill.objects.all()
 
     # Experience
+    experiences = Experience.objects.all()
 
     # Education
+    educations = Education.objects.all()
 
     # Social Media
     social_media = SocialMedia.objects.all()
@@ -66,6 +74,12 @@ def sview_context(request):
         'home_banner_area_image': home_banner_area_image,
         'site_logo': site_logo,
         'social_media': social_media,
+        'experiences': experiences,
+        'educations': educations,
+        'skills': skills,
+        'base_welcome_area_total_donation': base_welcome_area_total_donation,
+        'base_welcome_area_total_projects': base_welcome_area_total_projects,
+        'base_welcome_area_total_volunteers': base_welcome_area_total_volunteers,
     }
 
 
