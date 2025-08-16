@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from scv.models import GeneralSetting, ImageSetting, SocialMedia, Education, Experience, Skill, Document
+from scv.models import GeneralSetting, ImageSetting, SocialMedia, Education, Experience, Skill, Document,CustomerOffers
 
 @admin.register(GeneralSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
@@ -69,4 +69,14 @@ class DocumentAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Document
+        fields = '__all__'
+
+
+@admin.register(CustomerOffers)
+class CustomerOffersAdmin(admin.ModelAdmin):
+    list_display = ('id', 'myapp', 'description', 'icon', 'order', 'created_date', 'updated_date')
+    search_fields = ('myapp', 'description', 'icon')
+
+    class Meta:
+        model = CustomerOffers
         fields = '__all__'

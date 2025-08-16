@@ -1,9 +1,7 @@
 
-from email.mime import base
-from math import exp
-import site
+
 from django.shortcuts import render
-from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document
+from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document, CustomerOffers
 # Create your views here.
 
 
@@ -36,9 +34,14 @@ def sview_context(request):
     home_banner_area_email = get_general_setting('home_banner_area_email')
     home_banner_area_address = get_general_setting('home_banner_area_address')
     welcome_area_myself = get_general_setting('welcome_area_myself')
-    base_welcome_area_total_donation = get_general_setting('base_welcome_area_total_donation')
-    base_welcome_area_total_projects = get_general_setting('base_welcome_area_total_projects')
-    base_welcome_area_total_volunteers = get_general_setting('base_welcome_area_total_volunteers')
+    base_welcome_area_total_donation = get_general_setting(
+        'base_welcome_area_total_donation')
+    base_welcome_area_total_projects = get_general_setting(
+        'base_welcome_area_total_projects')
+    base_welcome_area_total_volunteers = get_general_setting(
+        'base_welcome_area_total_volunteers')
+    base_feature_area_customer_offer = get_general_setting(
+        'base_feature_area_customer_offer')
 
     # ImageSetting
     site_favicon = get_image_setting('site_favicon')
@@ -59,6 +62,9 @@ def sview_context(request):
 
     # Document
     documents = Document.objects.all()
+
+    # Customer Offers
+    customer_offers = CustomerOffers.objects.all()
 
     return {
         'site_title': site_title,
@@ -82,6 +88,8 @@ def sview_context(request):
         'base_welcome_area_total_projects': base_welcome_area_total_projects,
         'base_welcome_area_total_volunteers': base_welcome_area_total_volunteers,
         'documents': documents,
+        'customer_offers': customer_offers,
+        'base_feature_area_customer_offer': base_feature_area_customer_offer,
     }
 
 

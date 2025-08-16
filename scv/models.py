@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -135,4 +136,22 @@ class Document(AbstractModel):
     class Meta:
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
+        ordering = ['order']
+
+class CustomerOffers(AbstractModel):
+    order = models.IntegerField(default=0, blank=True,
+                                verbose_name='Order', help_text="Enter the order of the social media link")
+    myapp = models.CharField(default='', max_length=100, blank=True, verbose_name='MyApp',
+                             help_text="Enter the name of your app")
+    description = models.TextField(default='', blank=True, verbose_name='Description',
+                                    help_text="Enter a description of the customer offer")
+    icon = models.CharField(default='', max_length=100, blank=True, verbose_name='Icon',
+                            help_text="Enter the icon class for your social media profile")
+
+    def __str__(self):
+        return f'Customer Offer: {self.description}'
+
+    class Meta:
+        verbose_name = 'Customer Offer'
+        verbose_name_plural = 'Customer Offers'
         ordering = ['order']
