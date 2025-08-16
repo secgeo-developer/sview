@@ -2,7 +2,7 @@
 
 from email.mime import base
 from django.shortcuts import render
-from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document, CustomerOffers, CustomerTestimonials
+from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document, CustomerOffers, CustomerTestimonials,DataFilterSlug
 # Create your views here.
 
 
@@ -72,6 +72,9 @@ def sview_context(request):
     # Customer Testimonials
     customer_testimonials = CustomerTestimonials.objects.all()
 
+    # Data Filter Slugs
+    data_filter_slugs = DataFilterSlug.objects.all()
+
     return {
         'site_title': site_title,
         'site_keywords': site_keywords,
@@ -98,6 +101,7 @@ def sview_context(request):
         'base_feature_area_customer_offer': base_feature_area_customer_offer,
         'base_testimonials_area': base_testimonials_area,
         'customer_testimonials': customer_testimonials,
+        'data_filter_slugs': data_filter_slugs,
     }
 
 

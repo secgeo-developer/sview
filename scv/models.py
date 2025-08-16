@@ -170,3 +170,22 @@ class CustomerTestimonials(AbstractModel):
         verbose_name = 'Customer Testimonial'
         verbose_name_plural = 'Customer Testimonials'
         ordering = ['-created_date']
+
+class DataFilterSlug(AbstractModel):
+    order = models.IntegerField(default=0, blank=True,
+                                verbose_name='Order', help_text="Enter the order of the Data Filter Slug")
+    slug = models.SlugField(default='', max_length=100, blank=True,
+                            verbose_name='Data Filter Slug', help_text="Enter the slug for the Data Filter Slug")
+    image_file = models.ImageField(
+        default='', verbose_name='Image File', upload_to='images/', help_text="Upload an image file")
+
+    #file = models.FileField(storage=DocumentStorage(), blank=True,
+    #                       verbose_name='Document File', help_text="Upload the document file")
+
+    def __str__(self):
+        return f'Document: {self.slug}'
+
+    class Meta:
+        verbose_name = 'Data Filter'
+        verbose_name_plural = 'Data Filters'
+        ordering = ['order']
