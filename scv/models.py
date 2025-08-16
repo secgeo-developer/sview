@@ -155,3 +155,18 @@ class CustomerOffers(AbstractModel):
         verbose_name = 'Customer Offer'
         verbose_name_plural = 'Customer Offers'
         ordering = ['order']
+
+class CustomerTestimonials(AbstractModel):
+    name = models.CharField(
+        max_length=100, default='', blank=True, verbose_name='Name', help_text="Enter the name of the site")
+    description = models.TextField(
+        max_length=254, default='A short description about the site.', blank=True, verbose_name='Description', help_text="Enter a short description about the site")
+
+    def __str__(self):
+        # return self.site_name
+        return f"{self.name}"
+
+    class Meta:
+        verbose_name = 'Customer Testimonial'
+        verbose_name_plural = 'Customer Testimonials'
+        ordering = ['-created_date']

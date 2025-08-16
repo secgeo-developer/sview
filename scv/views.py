@@ -1,7 +1,8 @@
 
 
+from email.mime import base
 from django.shortcuts import render
-from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document, CustomerOffers
+from scv.models import Education, GeneralSetting, ImageSetting, SocialMedia, Experience, Education, Skill, Document, CustomerOffers, CustomerTestimonials
 # Create your views here.
 
 
@@ -42,6 +43,8 @@ def sview_context(request):
         'base_welcome_area_total_volunteers')
     base_feature_area_customer_offer = get_general_setting(
         'base_feature_area_customer_offer')
+    base_testimonials_area = get_general_setting(
+        'base_testimonials_area')
 
     # ImageSetting
     site_favicon = get_image_setting('site_favicon')
@@ -65,6 +68,9 @@ def sview_context(request):
 
     # Customer Offers
     customer_offers = CustomerOffers.objects.all()
+
+    # Customer Testimonials
+    customer_testimonials = CustomerTestimonials.objects.all()
 
     return {
         'site_title': site_title,
@@ -90,6 +96,8 @@ def sview_context(request):
         'documents': documents,
         'customer_offers': customer_offers,
         'base_feature_area_customer_offer': base_feature_area_customer_offer,
+        'base_testimonials_area': base_testimonials_area,
+        'customer_testimonials': customer_testimonials,
     }
 
 

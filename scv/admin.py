@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from scv.models import GeneralSetting, ImageSetting, SocialMedia, Education, Experience, Skill, Document,CustomerOffers
+from scv.models import GeneralSetting, ImageSetting, SocialMedia, Education, Experience, Skill, Document,CustomerOffers,CustomerTestimonials
 
 @admin.register(GeneralSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
@@ -79,4 +79,14 @@ class CustomerOffersAdmin(admin.ModelAdmin):
 
     class Meta:
         model = CustomerOffers
+        fields = '__all__'
+
+
+@admin.register(CustomerTestimonials)
+class CustomerTestimonialsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'created_date', 'updated_date')
+    search_fields = ('name', 'description')
+
+    class Meta:
+        model = CustomerTestimonials
         fields = '__all__'
